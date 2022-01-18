@@ -1,34 +1,26 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
-const TOKEN = '1234a';
+import checkAuth from '../lib/check-auth';
 
 export default function AuthCheck() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const isAuth = async () => {
-      const res = await fetch('/api/auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      });
-
-      const { auth } = await res.json();
-
-      if (!auth) {
-        router.push('/auth-failed');
-      }
-    };
-
-    isAuth();
-  }, [router]);
-
   return (
     <div>
       <h4>Hozzáférés engedélyezve</h4>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const auth = await checkAuth();
+
+  if (!auth) {
+    return {
+      redirect: {
+        destination: '/auth-failed',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
