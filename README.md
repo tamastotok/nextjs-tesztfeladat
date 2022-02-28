@@ -1,20 +1,10 @@
-## Branch main:
+# Feladat:
 
-### Kliens oldali authentikáció:
+### Webapp készítése NextJS-el, melynek az alábbi oldalakkal/funkciókkal kell rendelkeznie:
 
-- fetch api és redirect: pages/auth-check.jsx-ben useEffect-el és useRouter-el
-- token ellenőrzése: pages/api/auth.js
+- **/blog/id oldalak:** itt az id 1-től 100-ig vehet értékeket, tehát lehet blog/1, blog/10, blog/55, stb.. Mindegyik oldalra csak annyit írj ki: Az URL-ben szereplő id: [id], és a négyzete [id négyzete]. Fontos, hogy szerver oldali renderelést használj.
 
-A tokent a pages/auth-check.jsx-ben lehet módosítani.
+- **/auth-check:** Ezt az oldalt csak authentikált user nyithatja meg. Használj Bearer Tokent, melynek ellenőrzésekor a szerver akkor vegye érvényesnek a tokent, ha számra végződik. Ellenkező esetben irányítsd a usert az auth-failed oldalra ahol csak annyi van kiírva, hogy hozzáférés megtagadva.
 
-#
-
-## Branch secondary:
-
-Szerver oldali authentikáció:
-
-- redirect: pages/auth-check.jsx-ben getServerSideProps-al
-- fetch api: lib/check-auth.js (nem vagyok benne biztos, hogy a fájl jó helyen van-e itt vagy a pages/api mappában lenne jobb)
-- token ellenőrzése: pages/api/auth.js
-
-A tokent és a fetch-hez tartozó url-t a lib/check-auth.js-ben lehet módosítani.
+- **/is-even:** Az oldalon egy input, és egy gomb szerepel. A gombra kattintással elküldöd az input értékét egy általad meghatározott endpoint-nak, ami válaszol, hogy páros vagy páratalan-e a szám. A választ írd ki az oldalra.\
+  **FONTOS:** az összes oldal rendelkezzen egy minimális navbar-ral, ahol csak annyi van kiírva, hogy “Teszt feladat”. Ez a komponens ne külön-külön legyen behúzva az oldalakra.
